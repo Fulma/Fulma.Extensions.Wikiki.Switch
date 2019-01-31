@@ -1,0 +1,34 @@
+@import "./../node_modules/bulma/sass/utilities/initial-variables";
+@import "./../node_modules/bulma/sass/utilities/functions";
+
+// Bulma customization
+$body-size: 14px;
+
+// Font Awesome
+$fa-font-path: "./fonts/";
+@import './../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import './../node_modules/@fortawesome/fontawesome-free/scss/regular';
+@import './../node_modules/@fortawesome/fontawesome-free/scss/solid';
+@import './../node_modules/@fortawesome/fontawesome-free/scss/brands';
+
+@import './../node_modules/bulma/bulma';
+
+@import './toc.scss';
+@import './sidebar.scss';
+
+body {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.page-content {
+    overflow: auto;
+    height: 100%;
+}
+
+.main-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}

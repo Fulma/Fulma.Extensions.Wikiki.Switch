@@ -1,0 +1,299 @@
+<html><head><title>Fulma.Extensions.Wikiki.Switch | Home</title><link rel="stylesheet" type="text/css" href="style.css"/><script src="https://polyfill.app/api/polyfill?features=scroll-behavior"></script></head><body><div class="columns is-gapless page-content"><div class="column is-2 sidebar"><section class="section"><div style="display:flex;justify-content:center"><figure class="image is-128x128"><img src="assets/logo_transparent.svg" style="height:100%"/></figure></div><div class="content    has-text-centered         "><p><a href=""><img src="https://badgen.net/badge/Version/1.0.0/green"/></a></p><p><a href=""><img src="https://badgen.net/badge//npm/blue?icon=npm"/></a><span> </span><a href=""><img src="https://badgen.net/badge//github/blue?icon=github"/></a></p></div></section></div><div class="column main-content" style="scroll-behavior:smooth"><div class="page-header"><section class="hero is-light"><div class="hero-body    has-text-centered         "><h2 class="title is-2 is-spaced">Fulma.Extensions.Wikiki.Switch</h2><p class="subtitle is-5 has-text-weight-light            ">Wrapper on top of bulma-switch providing support for displaying the classic checkbox as a switch button</p></div></section></div><div class="columns is-gapless"><div class="column"><section class="section"><div class="content"><div><p></p>
+<article class="message is-warning">
+  <div class="message-body">
+<p><strong>Version 3</strong> is in beta stage. We are releasing it so people can give feedback about the new features.</p>
+<p>The new feature are focused on improving the developer experience when using Auto coders</p>
+  </div>
+</article>
+<article class="message is-info">
+  <div class="message-body">
+<strong>Version 3</strong> of Thoth.Json and Thoth.Json.Net <strong>only support</strong> Fable 2.
+  </div>
+</article>
+<h1><a href="#decoder" aria-hidden="true" style="visibility:hidden"><span class="anchor" id="decoder"></span></a> Decoder</h1>
+<p>Turn JSON values into F# values.</p>
+<p>By using a Decoder, you will be guaranteed that the JSON structure is correct.
+This is especially useful if you use Fable without sharing your domain with the server.</p>
+<p><em>This module is inspired by <a href="http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode">Json.Decode from Elm</a>
+and <a href="http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/latest">elm-decode-pipeline</a>.</em></p>
+<p>As so, to complete this documentation, you can also take a look at the <a href="https://guide.elm-lang.org/interop/json.html">Elm documentation</a>.</p>
+<h2><a href="#what-is-a-decoder" aria-hidden="true" style="visibility:visible"><span class="anchor" id="what-is-a-decoder"></span>#</a> What is a Decoder ?</h2>
+<p>Here is the signature of a <code>Decoder</code>:</p>
+<pre><code class="language-fsharp">type Decoder&lt;'T&gt; = string -&gt; obj -&gt; Result&lt;'T, DecoderError&gt;
+</code></pre>
+<p>This is taking two arguments:</p>
+<ul>
+<li>the traveled path</li>
+<li>an &quot;untyped&quot; value and checking if it has the expected structure.</li>
+</ul>
+<p>If the structure is correct, then you get an <code>Ok</code> result, otherwise an <code>Error</code> explaining why and where the decoder failed.</p>
+<p>Example of error:</p>
+<pre><code class="language-fsharp">Error at: `$.user.firstname`
+Expecting an object with path `user.firstname` but instead got:
+{
+    &quot;user&quot;: {
+        &quot;name&quot;: &quot;maxime&quot;,
+        &quot;age&quot;: 25
+    }
+}
+Node `firstname` is unkown.
+</code></pre>
+<p>The path generated is a valid <code>JSONPath</code>, so you can use tools like <a href="http://jsonpath.com/">JSONPath Online Evaluator</a> to explore your JSON.</p>
+<h2><a href="#primitives-decoders" aria-hidden="true" style="visibility:visible"><span class="anchor" id="primitives-decoders"></span>#</a> Primitives decoders</h2>
+<ul>
+<li><code>string : Decoder&lt;string&gt;</code></li>
+<li><code>guid : Decoder&lt;System.Guid&gt;</code></li>
+<li><code>int : Decoder&lt;int&gt;</code></li>
+<li><code>int64 : Decoder&lt;int64&gt;</code></li>
+<li><code>uint64 : Decoder&lt;uint64&gt;</code></li>
+<li><code>bigint : Decoder&lt;bigint&gt;</code></li>
+<li><code>bool : Decoder&lt;bool&gt;</code></li>
+<li><code>float : Decoder&lt;float&gt;</code></li>
+<li><code>decimal : Decoder&lt;decimal&gt;</code></li>
+<li><code>datetime : Decoder&lt;System.DateTime&gt;</code></li>
+<li><code>datetimeOffset : Decoder&lt;System.DateTimeOffset&gt;</code></li>
+<li><code>timespan : Decoder&lt;System.TimeSpan&gt;</code></li>
+</ul>
+<pre><code class="language-fsharp">open Thoth.Json
+
+&gt; Decode.fromString Decode.string &quot;\&quot;maxime\&quot;&quot;
+val it : Result&lt;string, string&gt; = Ok &quot;maxime&quot;
+
+&gt; Decode.fromString Decode.int &quot;25&quot;
+val it : Result&lt;int, string&gt; = Ok 25
+
+&gt; Decode.fromString Decode.bool &quot;true&quot;
+val it : Result&lt;bool, string&gt; = Ok true
+
+&gt; Decode.fromString Decode.float &quot;true&quot;
+val it : Result&lt;float, string&gt; = Error &quot;Error at: `$`\n Expecting a float but instead got: true&quot;
+</code></pre>
+<p>With these primitives decoders we can handle the basic JSON values.</p>
+<h2><a href="#collections" aria-hidden="true" style="visibility:visible"><span class="anchor" id="collections"></span>#</a> Collections</h2>
+<p>There are special decoders for the following collections.</p>
+<ul>
+<li><code>list : Decoder&lt;'value&gt; -&gt; Decoder&lt;'value list&gt;</code></li>
+<li><code>array : Decoder&lt;'value&gt; -&gt; Decoder&lt;'value array&gt;</code></li>
+<li><code>index : -&gt; int -&gt; Decoder&lt;'value&gt; -&gt; Decoder&lt;'value&gt;</code></li>
+</ul>
+<pre><code class="language-fsharp">open Thoth.Json
+
+&gt; Decode.fromString (array int) &quot;[1, 2, 3]&quot;
+val it : Result&lt;int [], string&gt; =  Ok [|1, 2, 3|]
+
+&gt; Decode.fromString (list string) &quot;&quot;&quot;[&quot;Maxime&quot;, &quot;Alfonso&quot;, &quot;Vesper&quot;]&quot;&quot;&quot;
+val it : Result&lt;string list, string&gt; = Ok [&quot;Maxime&quot;, &quot;Alfonso&quot;, &quot;Vesper&quot;]
+
+&gt; Decode.fromString (Decode.index 1 Decode.string) &quot;&quot;&quot;[&quot;maxime&quot;, &quot;alfonso&quot;, &quot;steffen&quot;]&quot;&quot;&quot;
+val it : Result&lt;string, string&gt; = Ok(&quot;alfonso&quot;)
+</code></pre>
+<h2><a href="#decoding-objects" aria-hidden="true" style="visibility:visible"><span class="anchor" id="decoding-objects"></span>#</a> Decoding Objects</h2>
+<p>In order to decode objects, you can use:</p>
+<ul>
+<li><code>field : string -&gt; Decoder&lt;'value&gt; -&gt; Decoder&lt;'value&gt;</code>
+<ul>
+<li>Decode a JSON object, requiring a particular field.</li>
+</ul>
+</li>
+<li><code>at : string list -&gt; Decoder&lt;'value&gt; -&gt; Decoder&lt;'value&gt;</code>
+<ul>
+<li>Decode a JSON object, requiring certain path.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-fsharp">open Thoth.Json
+
+&gt; Decode.fromString (field &quot;x&quot; int) &quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;
+val it : Result&lt;int, string&gt; = Ok 10
+
+&gt; Decode.fromString (field &quot;y&quot; int) &quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;
+val it : Result&lt;int, string&gt; = Ok 21
+</code></pre>
+<p><strong>Important:</strong></p>
+<p>These two decoders only take into account the provided field or path. The object can have other fields/paths with other content.</p>
+<h3><a href="#map-functions" aria-hidden="true" style="visibility:visible"><span class="anchor" id="map-functions"></span>#</a> Map functions</h3>
+<p>To get data from several fields and convert them into a record you will need to use the <code>map</code> functions
+like <code>map2</code>, <code>map3</code>, ..., <code>map8</code>.</p>
+<pre><code class="language-fsharp">open Thoth.Json
+
+type Point =
+    { X : int
+      Y : int }
+
+    static member Decoder : Decoder&lt;Point&gt; =
+        Decode.map2 (fun x y -&gt;
+                { X = x
+                  Y = y } : Point)
+             (Decode.field &quot;x&quot; Decode.int)
+             (Decode.field &quot;y&quot; Decode.int)
+
+&gt; Decode.fromString Point.Decoder &quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;
+val it : Result&lt;Point, string&gt; = Ok { X = 10; Y = 21 }
+</code></pre>
+<h3><a href="#object-builder-style" aria-hidden="true" style="visibility:visible"><span class="anchor" id="object-builder-style"></span>#</a> Object builder style</h3>
+<p>When working with a larger object, you can use the object builder helper.</p>
+<pre><code class="language-fsharp">open Thoth.Json
+
+type User =
+    { Id : int
+      Name : string
+      Email : string
+      Followers : int }
+
+    static member Decoder : Decoder&lt;User&gt; =
+        Decode.object
+            (fun get -&gt;
+                { Id = get.Required.Field &quot;id&quot; Decode.int
+                    Name = get.Optional.Field &quot;name&quot; Decode.string
+                            |&gt; Option.defaultValue &quot;&quot;
+                    Email = get.Required.Field &quot;email&quot; Decode.string
+                    Followers = 0 }
+            )
+
+&gt; Decode.fromString User.Decoder &quot;&quot;&quot;{ &quot;id&quot;: 67, &quot;email&quot;: &quot;user@mail.com&quot; }&quot;&quot;&quot;
+val it : Result&lt;User, string&gt; = Ok { Id = 67; Name = &quot;&quot;; Email = &quot;user@mail.com&quot;; Followers = 0 }
+</code></pre>
+<h1><a href="#encoder" aria-hidden="true" style="visibility:hidden"><span class="anchor" id="encoder"></span></a> Encoder</h1>
+<p>Module for turning F# values into JSON values.</p>
+<p><em>This module is inspired by <a href="http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Encode">Json.Encode from Elm</a>.</em></p>
+<h2><a href="#how-to-use-it" aria-hidden="true" style="visibility:visible"><span class="anchor" id="how-to-use-it"></span>#</a> How to use it ?</h2>
+<pre><code class="language-fsharp">    open Thoth.Json
+
+    let person =
+        Encode.object
+            [ &quot;firstname&quot;, Encode.string &quot;maxime&quot;
+              &quot;surname&quot;, Encode.string &quot;mangel&quot;
+              &quot;age&quot;, Encode.int 25
+              &quot;address&quot;, Encode.object
+                            [ &quot;street&quot;, Encode.string &quot;main street&quot;
+                              &quot;city&quot;, Encode.string &quot;Bordeaux&quot; ]
+            ]
+
+    let compact = Encode.toString 0 person
+    // {&quot;firstname&quot;:&quot;maxime&quot;,&quot;surname&quot;:&quot;mangel&quot;,&quot;age&quot;:25,&quot;address&quot;:{&quot;street&quot;:&quot;main street&quot;,&quot;city&quot;:&quot;Bordeaux&quot;}}
+
+    let readable = Encode.toString 4 person
+    // {
+    //     &quot;firstname&quot;: &quot;maxime&quot;,
+    //     &quot;surname&quot;: &quot;mangel&quot;,
+    //     &quot;age&quot;: 25,
+    //     &quot;address&quot;: {
+    //         &quot;street&quot;: &quot;main street&quot;,
+    //         &quot;city&quot;: &quot;Bordeaux&quot;
+    //     }
+    // }
+</code></pre>
+<h1><a href="#auto-coders" aria-hidden="true" style="visibility:hidden"><span class="anchor" id="auto-coders"></span></a> Auto coders</h1>
+<article class="message is-info">
+  <div class="message-body">
+<p>When using <strong>auto coders</strong>, we are referring to both <strong>auto encoder</strong> and <strong>auto decoders</strong>.</p>
+  </div>
+</article>
+<p>If your JSON structure is a one to one match with your F# type, you can use auto coders.</p>
+<h2><a href="#auto-encoder" aria-hidden="true" style="visibility:visible"><span class="anchor" id="auto-encoder"></span>#</a> Auto encoder</h2>
+<p>Auto decoders will generate the decoder at runtime for you and still guarantee that the JSON structure is correct.</p>
+<pre><code class="language-fsharp">&gt; let json = &quot;&quot;&quot;{ &quot;Id&quot; : 0, &quot;Name&quot;: &quot;maxime&quot;, &quot;Email&quot;: &quot;mail@domain.com&quot;, &quot;Followers&quot;: 0 }&quot;&quot;&quot;
+&gt; Decode.Auto.fromString&lt;User&gt;(json)
+val it : Result&lt;User, string&gt; = Ok { Id = 0; Name = &quot;maxime&quot;; Email = &quot;mail@domain.com&quot;; Followers = 0 }
+</code></pre>
+<p><code>Decode.Auto</code> helpers accept an optional argument <code>isCamelCase</code>:</p>
+<ul>
+<li>if <code>true</code>, then the keys in the JSON are considered <code>camelCase</code></li>
+<li>if <code>false</code>, then the keys in the JSON are considered <code>PascalCase</code></li>
+</ul>
+<pre><code class="language-fsharp">&gt; let json = &quot;&quot;&quot;{ &quot;id&quot; : 0, &quot;name&quot;: &quot;maxime&quot;, &quot;email&quot;: &quot;mail@domain.com&quot;, &quot;followers&quot;: 0 }&quot;&quot;&quot;
+&gt; Decode.Auto.fromString&lt;User&gt;(json, isCamelCase=true)
+val it : Result&lt;User, string&gt; = Ok { Id = 0; Name = &quot;maxime&quot;; Email = &quot;mail@domain.com&quot;; Followers = 0 }
+</code></pre>
+<h2><a href="#auto-encoder-2" aria-hidden="true" style="visibility:visible"><span class="anchor" id="auto-encoder-2"></span>#</a> Auto encoder</h2>
+<p>Auto decoders will generate the encoder at runtime for you.</p>
+<pre><code class="language-fsharp">type User =
+    { Id : int
+      Name : string
+      Email : string
+      Followers : int }
+
+let user =
+    { Id = 0
+      Name = &quot;maxime&quot;
+      Email = &quot;mail@domain.com&quot;
+      Followers = 0 }
+
+let json = Encode.Auto.toString(4, user)
+// {
+//     &quot;Id&quot;: 0,
+//     &quot;Name&quot;: &quot;maxime&quot;,
+//     &quot;Email&quot;: &quot;mail@domain.com&quot;,
+//     &quot;Followers&quot;: 0
+// }
+</code></pre>
+<h2><a href="#extra-coders" aria-hidden="true" style="visibility:visible"><span class="anchor" id="extra-coders"></span>#</a> Extra coders</h2>
+<p>When generating an auto coder, sometimes you want to use a manual coder for a type nested in your domain hierarchy.</p>
+<p>In those cases you can pass <strong>extra coders</strong> that will replace the default (or missing) coders. Use the <code>Extra</code> module to build the map for extra coders (see example below).</p>
+<pre><code class="language-fsharp">let myExtraCoders =
+    Extra.empty
+    |&gt; Extra.withCustom MyType.Encode MyType.Decode
+</code></pre>
+<h2><a href="#decoding-int64-decimal-or-bigint" aria-hidden="true" style="visibility:visible"><span class="anchor" id="decoding-int64-decimal-or-bigint"></span>#</a> Decoding int64, decimal or bigint</h2>
+<p>Coders for <code>int64</code>, <code>decimal</code> or <code>bigint</code> won't be automatically generated by default. If their were, the bundle size would increase significantly even if you don't use these types.</p>
+<p>If necessary, you can easily include them in your extra coders with the helpers in the <code>Extra</code> module:</p>
+<pre><code class="language-fsharp">let myExtraCoders =
+    Extra.empty
+    |&gt; Extra.withInt64
+    |&gt; Extra.withDecimal
+    |&gt; Extra.withCustom MyType.Encode MyType.Decode
+</code></pre>
+<h2><a href="#caching" aria-hidden="true" style="visibility:visible"><span class="anchor" id="caching"></span>#</a> Caching</h2>
+<p>To avoid having to regenerate your auto coders every time you need them, you can use the helpers with the <code>Cached</code> suffix instead (please note in these cases you shouldn't change the value of extra parameters like <code>isCamelCase</code> or <code>extra</code>).</p>
+<p>The easiest way to do it is to include some helpers in your app to easily generate (or retrieve from cache) coders whenever you need them. For example:</p>
+<pre><code class="language-fsharp">// Note the helpers must be inlined to resolve generic parameters in Fable
+let inline encoder&lt;'T&gt; = Encode.Auto.generateEncoderCached&lt;'T&gt;(isCamelCase = true, extra = myExtraCoders)
+let inline decoder&lt;'T&gt; = Decode.Auto.generateDecoderCached&lt;'T&gt;(isCamelCase = true, extra = myExtraCoders)
+</code></pre>
+<p>Now you can easily invoke the helpers whenever you need a coder. Most of the times you can omit the generic argument as it will be inferred.</p>
+<pre><code class="language-fsharp">let demo(x : RequestType) : ResponseType =
+    let requestJson = encoder x |&gt; Encode.toString 4
+    let responseJson = (* Send JSON to server and receive response *)
+    Decode.unsafeFromString decoder responseJson
+</code></pre>
+<h1><a href="#net-netcore-support" aria-hidden="true" style="visibility:hidden"><span class="anchor" id="net-netcore-support"></span></a> .Net &amp; NetCore support</h1>
+<p>You can share your decoders and encoders <strong>between your client and server</strong>.</p>
+<p>In order to use Thoth.Json API on .Net or NetCore you need to use the <code>Thoth.Json.Net</code> package.</p>
+<h2><a href="#code-sample" aria-hidden="true" style="visibility:visible"><span class="anchor" id="code-sample"></span>#</a> Code sample</h2>
+<pre><code class="language-fsharp">// By adding this condition, you can share your code between your client and server
+#if FABLE_COMPILER
+open Thoth.Json
+#else
+open Thoth.Json.Net
+#endif
+
+type User =
+    { Id : int
+      Name : string
+      Email : string
+      Followers : int }
+
+    static member Decoder : Decode.Decoder&lt;User&gt; =
+        Decode.object
+            (fun get -&gt;
+                { Id = get.Required.Field &quot;id&quot; Decode.int
+                    Name = get.Optional.Field &quot;name&quot; Decode.string
+                            |&gt; Option.defaultValue &quot;&quot;
+                    Email = get.Required.Field &quot;email&quot; Decode.string
+                    Followers = 0 }
+            )
+
+    static member Encoder (user : User) =
+        Encode.object
+            [ &quot;id&quot;, Encode.int user.Id
+              &quot;name&quot;, Encode.string user.Name
+              &quot;email&quot;, Encode.string user.Email
+              &quot;followers&quot;, Encode.int user.Followers
+            ]
+</code></pre>
+<h2><a href="#giraffe" aria-hidden="true" style="visibility:visible"><span class="anchor" id="giraffe"></span>#</a> Giraffe</h2>
+<p>If you're using the <a href="https://github.com/giraffe-fsharp/Giraffe">Giraffe</a> or <a href="https://saturnframework.org/">Saturn</a> web servers, you can use the <code>Thoth.Json.Giraffe</code> package to enable automatic JSON serialization with Thoth in your responses. Check <a href="https://github.com/giraffe-fsharp/Giraffe/blob/master/DOCUMENTATION.md#using-a-different-json-serializer">how to add a custom serializer</a> to Giraffe.</p>
+<blockquote>
+<p>The <code>ThothSerializer</code> type also include some static helpers to deal with JSON directly for the request and response streams.</p>
+</blockquote>
+</div></div></section></div><div class="column is-3        is-hidden-touch     "><nav class="toc-container"><ul class="toc-headings"><div class="toc-label"><a href="#decoder">Decoder</a></div><ul class="toc-headings"><li><a href="#what-is-a-decoder">What is a Decoder ?</a></li><li><a href="#primitives-decoders">Primitives decoders</a></li><li><a href="#collections">Collections</a></li><li><a href="#decoding-objects">Decoding Objects</a><ul class="toc-headings"><li><a href="#map-functions">Map functions</a></li><li><a href="#object-builder-style">Object builder style</a></li></ul></li></ul></li><div class="toc-label"><a href="#encoder">Encoder</a></div><ul class="toc-headings"><li><a href="#how-to-use-it">How to use it ?</a></li></ul></li><div class="toc-label"><a href="#auto-coders">Auto coders</a></div><ul class="toc-headings"><li><a href="#auto-encoder">Auto encoder</a></li><li><a href="#auto-encoder-2">Auto encoder</a></li><li><a href="#extra-coders">Extra coders</a></li><li><a href="#decoding-int64-decimal-or-bigint">Decoding int64, decimal or bigint</a></li><li><a href="#caching">Caching</a></li></ul></li><div class="toc-label"><a href="#net-netcore-support">.Net & NetCore support</a></div><ul class="toc-headings"><li><a href="#code-sample">Code sample</a></li><li><a href="#giraffe">Giraffe</a></li></ul></li></ul></nav></div></div></div></div></body></html>

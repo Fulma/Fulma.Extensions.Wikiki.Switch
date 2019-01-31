@@ -1,0 +1,24 @@
+source https://www.nuget.org/api/v2
+
+nuget Fable.Core
+nuget Fable.React
+nuget Fulma 2.0.0-beta-001
+
+group Docs
+    storage:none
+    source https://www.nuget.org/api/v2
+    framework: netstandard2.0
+
+nuget Fable.Promise
+    nuget FSharp.Core redirects:force
+    nuget Fable.Core
+    nuget Fable.Import.Browser
+    nuget Fable.React
+    nuget Fable.PowerPack
+    nuget Fable.Import.Node
+    nuget Fulma
+    nuget Fable.FontAwesome
+    nuget Fable.FontAwesome.Free
+
+    github akamud/vscode-theme-onelight themes/OneLight.json
+    github ionide/ionide-fsgrammar grammar/fsharp.json
