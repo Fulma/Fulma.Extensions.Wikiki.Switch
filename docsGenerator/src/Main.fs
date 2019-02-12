@@ -37,7 +37,9 @@ let header =
     div [ Class "page-header" ]
         [ Hero.hero [ Hero.Color IsLight ]
             [ Hero.body [ Modifiers [ Modifier.TextAlignment (Screen.All, TextAlignment.Centered) ] ]
-                [ Heading.h2 [ Heading.IsSpaced ]
+                [ div [ Class "intersection-observer" ]
+                    [ ]
+                  Heading.h2 [ Heading.IsSpaced ]
                     [ str "Fulma.Extensions.Wikiki.Switch" ]
                   Heading.p [ Heading.IsSubtitle
                               Heading.Is5
@@ -96,7 +98,7 @@ let pageTemplate (pageData : PageData) =
               link [ Rel "stylesheet"
                      Type "text/css"
                      Href "style.css" ]
-              script [ Src "https://polyfill.app/api/polyfill?features=scroll-behavior" ]
+              script [ Src "https://polyfill.app/api/polyfill?features=scroll-behavior,intersection-observer" ]
                 [ ] ]
           body [ ]
             [ Columns.columns [ Columns.IsGapless

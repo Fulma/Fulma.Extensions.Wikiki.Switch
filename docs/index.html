@@ -1,4 +1,24 @@
-<html><head><title>Fulma.Extensions.Wikiki.Switch | Home</title><link rel="stylesheet" type="text/css" href="style.css"/><script src="https://polyfill.app/api/polyfill?features=scroll-behavior"></script></head><body><div class="columns is-gapless page-content"><div class="column is-2 sidebar"><section class="section"><div style="display:flex;justify-content:center"><figure class="image is-128x128"><img src="assets/logo_transparent.svg" style="height:100%"/></figure></div><div class="content    has-text-centered         "><p><a href=""><img src="https://badgen.net/badge/Version/1.0.0/green"/></a></p><p><a href=""><img src="https://badgen.net/badge//npm/blue?icon=npm"/></a><span> </span><a href=""><img src="https://badgen.net/badge//github/blue?icon=github"/></a></p></div></section></div><div class="column main-content" style="scroll-behavior:smooth"><div class="page-header"><section class="hero is-light"><div class="hero-body    has-text-centered         "><h2 class="title is-2 is-spaced">Fulma.Extensions.Wikiki.Switch</h2><p class="subtitle is-5 has-text-weight-light            ">Wrapper on top of bulma-switch providing support for displaying the classic checkbox as a switch button</p></div></section></div><div class="columns is-gapless"><div class="column"><section class="section"><div class="content"><div><p></p>
+<html><head><title>Fulma.Extensions.Wikiki.Switch | Home</title><link rel="stylesheet" type="text/css" href="style.css"/><script src="https://polyfill.app/api/polyfill?features=scroll-behavior,intersection-observer"></script></head><body><div class="columns is-gapless page-content"><div class="column is-2 sidebar"><section class="section"><div style="display:flex;justify-content:center"><figure class="image is-128x128"><img src="assets/logo_transparent.svg" style="height:100%"/></figure></div><div class="content    has-text-centered         "><p><a href=""><img src="https://badgen.net/badge/Version/1.0.0/green"/></a></p><p><a href=""><img src="https://badgen.net/badge//npm/blue?icon=npm"/></a><span> </span><a href=""><img src="https://badgen.net/badge//github/blue?icon=github"/></a></p></div></section></div><div class="column main-content" style="scroll-behavior:smooth"><div class="page-header"><section class="hero is-light"><div class="hero-body    has-text-centered         "><div class="intersection-observer"></div><h2 class="title is-2 is-spaced">Fulma.Extensions.Wikiki.Switch</h2><p class="subtitle is-5 has-text-weight-light            ">Wrapper on top of bulma-switch providing support for displaying the classic checkbox as a switch button</p></div></section></div><div class="columns is-gapless"><div class="column"><section class="section"><div class="content"><div><p></p>
+<article class="message is-warning">
+                <div class="message-body"><p><strong>Version 3</strong> is in beta stage. We are releasing it so people can give feedback about the new features.</p>
+<p>The new feature are focused on improving the developer experience when using Auto coders</p>
+</div>
+</article>
+<article class="message is-info">
+                <div class="message-body"><p><strong>Version 3</strong> is in beta stage. We are releasing it so people can give feedback about the new features.</p>
+<p>The new feature are focused on improving the developer experience when using Auto coders</p>
+</div>
+</article>
+<article class="message is-success">
+                <div class="message-body"><p><strong>Version 3</strong> is in beta stage. We are releasing it so people can give feedback about the new features.</p>
+<p>The new feature are focused on improving the developer experience when using Auto coders</p>
+</div>
+</article>
+<article class="message is-danger">
+                <div class="message-body"><p><strong>Version 3</strong> is in beta stage. We are releasing it so people can give feedback about the new features.</p>
+<p>The new feature are focused on improving the developer experience when using Auto coders</p>
+</div>
+</article>
 <article class="message is-warning">
   <div class="message-body">
 <p><strong>Version 3</strong> is in beta stage. We are releasing it so people can give feedback about the new features.</p>
@@ -19,8 +39,7 @@ and <a href="http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/l
 <p>As so, to complete this documentation, you can also take a look at the <a href="https://guide.elm-lang.org/interop/json.html">Elm documentation</a>.</p>
 <h2><a href="#what-is-a-decoder" aria-hidden="true" style="visibility:visible"><span class="anchor" id="what-is-a-decoder"></span>#</a> What is a Decoder ?</h2>
 <p>Here is the signature of a <code>Decoder</code>:</p>
-<pre><code class="language-fsharp">type Decoder&lt;'T&gt; = string -&gt; obj -&gt; Result&lt;'T, DecoderError&gt;
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">type</span><span> </span><span style="color: #C18401">Decoder</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">&#039;T</span><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">=</span><span> string </span><span style="color: #A626A4">-&gt;</span><span> obj </span><span style="color: #A626A4">-&gt;</span><span> Result</span><span style="color: #A626A4">&lt;</span><span>&#039;T</span><span style="color: #A626A4">,</span><span> DecoderError</span><span style="color: #A626A4">&gt;</span></code></pre>
 <p>This is taking two arguments:</p>
 <ul>
 <li>the traveled path</li>
@@ -28,16 +47,15 @@ and <a href="http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/l
 </ul>
 <p>If the structure is correct, then you get an <code>Ok</code> result, otherwise an <code>Error</code> explaining why and where the decoder failed.</p>
 <p>Example of error:</p>
-<pre><code class="language-fsharp">Error at: `$.user.firstname`
-Expecting an object with path `user.firstname` but instead got:
-{
-    &quot;user&quot;: {
-        &quot;name&quot;: &quot;maxime&quot;,
-        &quot;age&quot;: 25
-    }
-}
-Node `firstname` is unkown.
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span>Error at</span><span style="color: #A626A4">:</span><span> `$.user.firstname`</span>
+<span>Expecting an object </span><span style="color: #A626A4">with</span><span> path `user.firstname` but instead got</span><span style="color: #A626A4">:</span>
+<span style="color: #A626A4">{</span>
+<span>    </span><span style="color: #50A14F">&quot;user&quot;</span><span style="color: #A626A4">:</span><span> </span><span style="color: #A626A4">{</span>
+<span>        </span><span style="color: #50A14F">&quot;name&quot;</span><span style="color: #A626A4">:</span><span> &quot;</span><span style="color: #C18401">maxime</span><span>&quot;</span><span style="color: #A626A4">,</span>
+<span>        </span><span style="color: #50A14F">&quot;age&quot;</span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">25</span>
+<span>    </span><span style="color: #A626A4">}</span>
+<span style="color: #A626A4">}</span>
+<span>Node `firstname` is unkown.</span></code></pre>
 <p>The path generated is a valid <code>JSONPath</code>, so you can use tools like <a href="http://jsonpath.com/">JSONPath Online Evaluator</a> to explore your JSON.</p>
 <h2><a href="#primitives-decoders" aria-hidden="true" style="visibility:visible"><span class="anchor" id="primitives-decoders"></span>#</a> Primitives decoders</h2>
 <ul>
@@ -54,20 +72,19 @@ Node `firstname` is unkown.
 <li><code>datetimeOffset : Decoder&lt;System.DateTimeOffset&gt;</code></li>
 <li><code>timespan : Decoder&lt;System.TimeSpan&gt;</code></li>
 </ul>
-<pre><code class="language-fsharp">open Thoth.Json
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json</span>
 
-&gt; Decode.fromString Decode.string &quot;\&quot;maxime\&quot;&quot;
-val it : Result&lt;string, string&gt; = Ok &quot;maxime&quot;
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString Decode.string </span><span style="color: #50A14F">&quot;\&quot;maxime\&quot;&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">string</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok </span><span>&quot;</span><span style="color: #383A42">maxime</span><span>&quot;</span>
 
-&gt; Decode.fromString Decode.int &quot;25&quot;
-val it : Result&lt;int, string&gt; = Ok 25
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString Decode.int </span><span style="color: #50A14F">&quot;25&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">int</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok 25</span>
 
-&gt; Decode.fromString Decode.bool &quot;true&quot;
-val it : Result&lt;bool, string&gt; = Ok true
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString Decode.bool </span><span style="color: #50A14F">&quot;true&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">bool</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok true</span>
 
-&gt; Decode.fromString Decode.float &quot;true&quot;
-val it : Result&lt;float, string&gt; = Error &quot;Error at: `$`\n Expecting a float but instead got: true&quot;
-</code></pre>
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString Decode.float </span><span style="color: #50A14F">&quot;true&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">float</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Error </span><span>&quot;</span><span style="color: #383A42">Error at</span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">`</span><span>$</span><span style="color: #383A42">`</span><span>\</span><span style="color: #383A42">n Expecting a float but instead got</span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">true</span><span>&quot;</span></code></pre>
 <p>With these primitives decoders we can handle the basic JSON values.</p>
 <h2><a href="#collections" aria-hidden="true" style="visibility:visible"><span class="anchor" id="collections"></span>#</a> Collections</h2>
 <p>There are special decoders for the following collections.</p>
@@ -76,17 +93,16 @@ val it : Result&lt;float, string&gt; = Error &quot;Error at: `$`\n Expecting a f
 <li><code>array : Decoder&lt;'value&gt; -&gt; Decoder&lt;'value array&gt;</code></li>
 <li><code>index : -&gt; int -&gt; Decoder&lt;'value&gt; -&gt; Decoder&lt;'value&gt;</code></li>
 </ul>
-<pre><code class="language-fsharp">open Thoth.Json
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json</span>
 
-&gt; Decode.fromString (array int) &quot;[1, 2, 3]&quot;
-val it : Result&lt;int [], string&gt; =  Ok [|1, 2, 3|]
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString </span><span style="color: #A626A4">(</span><span>array int</span><span style="color: #A626A4">)</span><span> </span><span style="color: #50A14F">&quot;[1, 2, 3]&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">int</span><span> </span><span style="color: #A626A4">[],</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42">  Ok </span><span style="color: #A626A4">[|</span><span style="color: #383A42">1</span><span style="color: #A626A4">,</span><span style="color: #383A42"> 2</span><span style="color: #A626A4">,</span><span style="color: #383A42"> 3</span><span style="color: #A626A4">|]</span>
 
-&gt; Decode.fromString (list string) &quot;&quot;&quot;[&quot;Maxime&quot;, &quot;Alfonso&quot;, &quot;Vesper&quot;]&quot;&quot;&quot;
-val it : Result&lt;string list, string&gt; = Ok [&quot;Maxime&quot;, &quot;Alfonso&quot;, &quot;Vesper&quot;]
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString </span><span style="color: #A626A4">(</span><span>list string</span><span style="color: #A626A4">)</span><span> </span><span style="color: #50A14F">&quot;&quot;&quot;[&quot;Maxime&quot;, &quot;Alfonso&quot;, &quot;Vesper&quot;]&quot;&quot;&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">string</span><span> </span><span style="color: #C18401">list</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok </span><span style="color: #A626A4">[</span><span>&quot;</span><span style="color: #383A42">Maxime</span><span>&quot;</span><span style="color: #A626A4">,</span><span style="color: #383A42"> </span><span>&quot;</span><span style="color: #383A42">Alfonso</span><span>&quot;</span><span style="color: #A626A4">,</span><span style="color: #383A42"> </span><span>&quot;</span><span style="color: #383A42">Vesper</span><span>&quot;</span><span style="color: #A626A4">]</span>
 
-&gt; Decode.fromString (Decode.index 1 Decode.string) &quot;&quot;&quot;[&quot;maxime&quot;, &quot;alfonso&quot;, &quot;steffen&quot;]&quot;&quot;&quot;
-val it : Result&lt;string, string&gt; = Ok(&quot;alfonso&quot;)
-</code></pre>
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString </span><span style="color: #A626A4">(</span><span>Decode.index </span><span style="color: #986801">1</span><span> Decode.string</span><span style="color: #A626A4">)</span><span> </span><span style="color: #50A14F">&quot;&quot;&quot;[&quot;maxime&quot;, &quot;alfonso&quot;, &quot;steffen&quot;]&quot;&quot;&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">string</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok</span><span style="color: #A626A4">(</span><span>&quot;</span><span style="color: #383A42">alfonso</span><span>&quot;</span><span style="color: #A626A4">)</span></code></pre>
 <h2><a href="#decoding-objects" aria-hidden="true" style="visibility:visible"><span class="anchor" id="decoding-objects"></span>#</a> Decoding Objects</h2>
 <p>In order to decode objects, you can use:</p>
 <ul>
@@ -101,88 +117,84 @@ val it : Result&lt;string, string&gt; = Ok(&quot;alfonso&quot;)
 </ul>
 </li>
 </ul>
-<pre><code class="language-fsharp">open Thoth.Json
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json</span>
 
-&gt; Decode.fromString (field &quot;x&quot; int) &quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;
-val it : Result&lt;int, string&gt; = Ok 10
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString </span><span style="color: #A626A4">(</span><span>field </span><span style="color: #50A14F">&quot;x&quot;</span><span> int</span><span style="color: #A626A4">)</span><span> </span><span style="color: #50A14F">&quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">int</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok 10</span>
 
-&gt; Decode.fromString (field &quot;y&quot; int) &quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;
-val it : Result&lt;int, string&gt; = Ok 21
-</code></pre>
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString </span><span style="color: #A626A4">(</span><span>field </span><span style="color: #50A14F">&quot;y&quot;</span><span> int</span><span style="color: #A626A4">)</span><span> </span><span style="color: #50A14F">&quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">int</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok 21</span></code></pre>
 <p><strong>Important:</strong></p>
 <p>These two decoders only take into account the provided field or path. The object can have other fields/paths with other content.</p>
 <h3><a href="#map-functions" aria-hidden="true" style="visibility:visible"><span class="anchor" id="map-functions"></span>#</a> Map functions</h3>
 <p>To get data from several fields and convert them into a record you will need to use the <code>map</code> functions
 like <code>map2</code>, <code>map3</code>, ..., <code>map8</code>.</p>
-<pre><code class="language-fsharp">open Thoth.Json
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json</span>
 
-type Point =
-    { X : int
-      Y : int }
+<span style="color: #A626A4">type</span><span> </span><span style="color: #C18401">Point</span><span> </span><span style="color: #A626A4">=</span>
+<span>    </span><span style="color: #A626A4">{</span><span> X </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int</span>
+<span>      Y </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int </span><span style="color: #A626A4">}</span>
 
-    static member Decoder : Decoder&lt;Point&gt; =
-        Decode.map2 (fun x y -&gt;
-                { X = x
-                  Y = y } : Point)
-             (Decode.field &quot;x&quot; Decode.int)
-             (Decode.field &quot;y&quot; Decode.int)
+<span>    </span><span style="color: #A626A4">static member</span><span> </span><span style="color: #E45649">Decoder</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Decoder</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">Point</span><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">=</span>
+<span>        Decode.map2 </span><span style="color: #A626A4">(fun</span><span style="color: #383A42"> x y </span><span style="color: #A626A4">-&gt;</span>
+<span>                </span><span style="color: #A626A4">{</span><span> X </span><span style="color: #A626A4">=</span><span> x</span>
+<span>                  Y </span><span style="color: #A626A4">=</span><span> y </span><span style="color: #A626A4">}</span><span> </span><span style="color: #A626A4">:</span><span> Point</span><span style="color: #A626A4">)</span>
+<span>             </span><span style="color: #A626A4">(</span><span>Decode.field </span><span style="color: #50A14F">&quot;x&quot;</span><span> Decode.int</span><span style="color: #A626A4">)</span>
+<span>             </span><span style="color: #A626A4">(</span><span>Decode.field </span><span style="color: #50A14F">&quot;y&quot;</span><span> Decode.int</span><span style="color: #A626A4">)</span>
 
-&gt; Decode.fromString Point.Decoder &quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;
-val it : Result&lt;Point, string&gt; = Ok { X = 10; Y = 21 }
-</code></pre>
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString Point.Decoder </span><span style="color: #50A14F">&quot;&quot;&quot;{&quot;x&quot;: 10, &quot;y&quot;: 21}&quot;&quot;&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">Point</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok </span><span style="color: #A626A4">{</span><span> X </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 10</span><span style="color: #A626A4">;</span><span> Y </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 21 </span><span style="color: #A626A4">}</span></code></pre>
 <h3><a href="#object-builder-style" aria-hidden="true" style="visibility:visible"><span class="anchor" id="object-builder-style"></span>#</a> Object builder style</h3>
 <p>When working with a larger object, you can use the object builder helper.</p>
-<pre><code class="language-fsharp">open Thoth.Json
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json</span>
 
-type User =
-    { Id : int
-      Name : string
-      Email : string
-      Followers : int }
+<span style="color: #A626A4">type</span><span> </span><span style="color: #C18401">User</span><span> </span><span style="color: #A626A4">=</span>
+<span>    </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int</span>
+<span>      Name </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">string</span>
+<span>      Email </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">string</span>
+<span>      Followers </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int </span><span style="color: #A626A4">}</span>
 
-    static member Decoder : Decoder&lt;User&gt; =
-        Decode.object
-            (fun get -&gt;
-                { Id = get.Required.Field &quot;id&quot; Decode.int
-                    Name = get.Optional.Field &quot;name&quot; Decode.string
-                            |&gt; Option.defaultValue &quot;&quot;
-                    Email = get.Required.Field &quot;email&quot; Decode.string
-                    Followers = 0 }
-            )
+<span>    </span><span style="color: #A626A4">static member</span><span> </span><span style="color: #E45649">Decoder</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Decoder</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">User</span><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">=</span>
+<span>        Decode.object</span>
+<span>            </span><span style="color: #A626A4">(fun</span><span style="color: #383A42"> get </span><span style="color: #A626A4">-&gt;</span>
+<span>                </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">=</span><span> get.Required.Field </span><span style="color: #50A14F">&quot;id&quot;</span><span> Decode.int</span>
+<span>                    Name </span><span style="color: #A626A4">=</span><span> get.Optional.Field </span><span style="color: #50A14F">&quot;name&quot;</span><span> Decode.string</span>
+<span>                            </span><span style="color: #A626A4">|&gt;</span><span> Option.defaultValue </span><span style="color: #50A14F">&quot;&quot;</span>
+<span>                    Email </span><span style="color: #A626A4">=</span><span> get.Required.Field </span><span style="color: #50A14F">&quot;email&quot;</span><span> Decode.string</span>
+<span>                    Followers </span><span style="color: #A626A4">=</span><span> </span><span style="color: #986801">0</span><span> </span><span style="color: #A626A4">}</span>
+<span>            </span><span style="color: #A626A4">)</span>
 
-&gt; Decode.fromString User.Decoder &quot;&quot;&quot;{ &quot;id&quot;: 67, &quot;email&quot;: &quot;user@mail.com&quot; }&quot;&quot;&quot;
-val it : Result&lt;User, string&gt; = Ok { Id = 67; Name = &quot;&quot;; Email = &quot;user@mail.com&quot;; Followers = 0 }
-</code></pre>
+<span style="color: #A626A4">&gt;</span><span> Decode.fromString User.Decoder </span><span style="color: #50A14F">&quot;&quot;&quot;{ &quot;id&quot;: 67, &quot;email&quot;: &quot;user@mail.com&quot; }&quot;&quot;&quot;</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">User</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 67</span><span style="color: #A626A4">;</span><span> Name </span><span style="color: #A626A4">=</span><span style="color: #383A42"> </span><span>&quot;&quot;</span><span style="color: #A626A4">;</span><span> Email </span><span style="color: #A626A4">=</span><span style="color: #383A42"> </span><span>&quot;user</span><span style="color: #A626A4">@</span><span>mail.com&quot;</span><span style="color: #A626A4">;</span><span> Followers </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 0 </span><span style="color: #A626A4">}</span></code></pre>
 <h1><a href="#encoder" aria-hidden="true" style="visibility:hidden"><span class="anchor" id="encoder"></span></a> Encoder</h1>
 <p>Module for turning F# values into JSON values.</p>
 <p><em>This module is inspired by <a href="http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Encode">Json.Encode from Elm</a>.</em></p>
 <h2><a href="#how-to-use-it" aria-hidden="true" style="visibility:visible"><span class="anchor" id="how-to-use-it"></span>#</a> How to use it ?</h2>
-<pre><code class="language-fsharp">    open Thoth.Json
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span>    </span><span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json</span>
 
-    let person =
-        Encode.object
-            [ &quot;firstname&quot;, Encode.string &quot;maxime&quot;
-              &quot;surname&quot;, Encode.string &quot;mangel&quot;
-              &quot;age&quot;, Encode.int 25
-              &quot;address&quot;, Encode.object
-                            [ &quot;street&quot;, Encode.string &quot;main street&quot;
-                              &quot;city&quot;, Encode.string &quot;Bordeaux&quot; ]
-            ]
+<span>    </span><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">person</span><span> </span><span style="color: #A626A4">=</span>
+<span>        Encode.object</span>
+<span>            </span><span style="color: #A626A4">[</span><span> </span><span style="color: #50A14F">&quot;firstname&quot;</span><span style="color: #A626A4">,</span><span> Encode.string </span><span style="color: #50A14F">&quot;maxime&quot;</span>
+<span>              </span><span style="color: #50A14F">&quot;surname&quot;</span><span style="color: #A626A4">,</span><span> Encode.string </span><span style="color: #50A14F">&quot;mangel&quot;</span>
+<span>              </span><span style="color: #50A14F">&quot;age&quot;</span><span style="color: #A626A4">,</span><span> Encode.int </span><span style="color: #986801">25</span>
+<span>              </span><span style="color: #50A14F">&quot;address&quot;</span><span style="color: #A626A4">,</span><span> Encode.object</span>
+<span>                            </span><span style="color: #A626A4">[</span><span> </span><span style="color: #50A14F">&quot;street&quot;</span><span style="color: #A626A4">,</span><span> Encode.string </span><span style="color: #50A14F">&quot;main street&quot;</span>
+<span>                              </span><span style="color: #50A14F">&quot;city&quot;</span><span style="color: #A626A4">,</span><span> Encode.string </span><span style="color: #50A14F">&quot;Bordeaux&quot;</span><span> </span><span style="color: #A626A4">]</span>
+<span>            </span><span style="color: #A626A4">]</span>
 
-    let compact = Encode.toString 0 person
-    // {&quot;firstname&quot;:&quot;maxime&quot;,&quot;surname&quot;:&quot;mangel&quot;,&quot;age&quot;:25,&quot;address&quot;:{&quot;street&quot;:&quot;main street&quot;,&quot;city&quot;:&quot;Bordeaux&quot;}}
+<span>    </span><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">compact</span><span> </span><span style="color: #A626A4">=</span><span> Encode.toString </span><span style="color: #986801">0</span><span> person</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">// {&quot;firstname&quot;:&quot;maxime&quot;,&quot;surname&quot;:&quot;mangel&quot;,&quot;age&quot;:25,&quot;address&quot;:{&quot;street&quot;:&quot;main street&quot;,&quot;city&quot;:&quot;Bordeaux&quot;}}</span>
 
-    let readable = Encode.toString 4 person
-    // {
-    //     &quot;firstname&quot;: &quot;maxime&quot;,
-    //     &quot;surname&quot;: &quot;mangel&quot;,
-    //     &quot;age&quot;: 25,
-    //     &quot;address&quot;: {
-    //         &quot;street&quot;: &quot;main street&quot;,
-    //         &quot;city&quot;: &quot;Bordeaux&quot;
-    //     }
-    // }
-</code></pre>
+<span>    </span><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">readable</span><span> </span><span style="color: #A626A4">=</span><span> Encode.toString </span><span style="color: #986801">4</span><span> person</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">// {</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">//     &quot;firstname&quot;: &quot;maxime&quot;,</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">//     &quot;surname&quot;: &quot;mangel&quot;,</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">//     &quot;age&quot;: 25,</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">//     &quot;address&quot;: {</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">//         &quot;street&quot;: &quot;main street&quot;,</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">//         &quot;city&quot;: &quot;Bordeaux&quot;</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">//     }</span>
+<span>    </span><span style="color: #A0A1A7;font-style: italic">// }</span></code></pre>
 <h1><a href="#auto-coders" aria-hidden="true" style="visibility:hidden"><span class="anchor" id="auto-coders"></span></a> Auto coders</h1>
 <article class="message is-info">
   <div class="message-body">
@@ -192,105 +204,97 @@ val it : Result&lt;User, string&gt; = Ok { Id = 67; Name = &quot;&quot;; Email =
 <p>If your JSON structure is a one to one match with your F# type, you can use auto coders.</p>
 <h2><a href="#auto-encoder" aria-hidden="true" style="visibility:visible"><span class="anchor" id="auto-encoder"></span>#</a> Auto encoder</h2>
 <p>Auto decoders will generate the decoder at runtime for you and still guarantee that the JSON structure is correct.</p>
-<pre><code class="language-fsharp">&gt; let json = &quot;&quot;&quot;{ &quot;Id&quot; : 0, &quot;Name&quot;: &quot;maxime&quot;, &quot;Email&quot;: &quot;mail@domain.com&quot;, &quot;Followers&quot;: 0 }&quot;&quot;&quot;
-&gt; Decode.Auto.fromString&lt;User&gt;(json)
-val it : Result&lt;User, string&gt; = Ok { Id = 0; Name = &quot;maxime&quot;; Email = &quot;mail@domain.com&quot;; Followers = 0 }
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">json</span><span> </span><span style="color: #A626A4">=</span><span> </span><span style="color: #50A14F">&quot;&quot;&quot;{ &quot;Id&quot; : 0, &quot;Name&quot;: &quot;maxime&quot;, &quot;Email&quot;: &quot;mail@domain.com&quot;, &quot;Followers&quot;: 0 }&quot;&quot;&quot;</span>
+<span style="color: #A626A4">&gt;</span><span> Decode.Auto.fromString</span><span style="color: #A626A4">&lt;</span><span>User</span><span style="color: #A626A4">&gt;(</span><span>json</span><span style="color: #A626A4">)</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">User</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 0</span><span style="color: #A626A4">;</span><span> Name </span><span style="color: #A626A4">=</span><span style="color: #383A42"> </span><span>&quot;maxime&quot;</span><span style="color: #A626A4">;</span><span> Email </span><span style="color: #A626A4">=</span><span style="color: #383A42"> </span><span>&quot;mail</span><span style="color: #A626A4">@</span><span>domain.com&quot;</span><span style="color: #A626A4">;</span><span> Followers </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 0 </span><span style="color: #A626A4">}</span></code></pre>
 <p><code>Decode.Auto</code> helpers accept an optional argument <code>isCamelCase</code>:</p>
 <ul>
 <li>if <code>true</code>, then the keys in the JSON are considered <code>camelCase</code></li>
 <li>if <code>false</code>, then the keys in the JSON are considered <code>PascalCase</code></li>
 </ul>
-<pre><code class="language-fsharp">&gt; let json = &quot;&quot;&quot;{ &quot;id&quot; : 0, &quot;name&quot;: &quot;maxime&quot;, &quot;email&quot;: &quot;mail@domain.com&quot;, &quot;followers&quot;: 0 }&quot;&quot;&quot;
-&gt; Decode.Auto.fromString&lt;User&gt;(json, isCamelCase=true)
-val it : Result&lt;User, string&gt; = Ok { Id = 0; Name = &quot;maxime&quot;; Email = &quot;mail@domain.com&quot;; Followers = 0 }
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">json</span><span> </span><span style="color: #A626A4">=</span><span> </span><span style="color: #50A14F">&quot;&quot;&quot;{ &quot;id&quot; : 0, &quot;name&quot;: &quot;maxime&quot;, &quot;email&quot;: &quot;mail@domain.com&quot;, &quot;followers&quot;: 0 }&quot;&quot;&quot;</span>
+<span style="color: #A626A4">&gt;</span><span> Decode.Auto.fromString</span><span style="color: #A626A4">&lt;</span><span>User</span><span style="color: #A626A4">&gt;(</span><span>json</span><span style="color: #A626A4">,</span><span> isCamelCase</span><span style="color: #A626A4">=</span><span style="color: #986801">true</span><span style="color: #A626A4">)</span>
+<span style="color: #A626A4">val</span><span> </span><span style="color: #E45649">it</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Result</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">User</span><span style="color: #A626A4">,</span><span> </span><span style="color: #C18401">string</span><span style="color: #A626A4">&gt;</span><span style="color: #383A42"> </span><span style="color: #A626A4">=</span><span style="color: #383A42"> Ok </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 0</span><span style="color: #A626A4">;</span><span> Name </span><span style="color: #A626A4">=</span><span style="color: #383A42"> </span><span>&quot;maxime&quot;</span><span style="color: #A626A4">;</span><span> Email </span><span style="color: #A626A4">=</span><span style="color: #383A42"> </span><span>&quot;mail</span><span style="color: #A626A4">@</span><span>domain.com&quot;</span><span style="color: #A626A4">;</span><span> Followers </span><span style="color: #A626A4">=</span><span style="color: #383A42"> 0 </span><span style="color: #A626A4">}</span></code></pre>
 <h2><a href="#auto-encoder-2" aria-hidden="true" style="visibility:visible"><span class="anchor" id="auto-encoder-2"></span>#</a> Auto encoder</h2>
 <p>Auto decoders will generate the encoder at runtime for you.</p>
-<pre><code class="language-fsharp">type User =
-    { Id : int
-      Name : string
-      Email : string
-      Followers : int }
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">type</span><span> </span><span style="color: #C18401">User</span><span> </span><span style="color: #A626A4">=</span>
+<span>    </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int</span>
+<span>      Name </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">string</span>
+<span>      Email </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">string</span>
+<span>      Followers </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int </span><span style="color: #A626A4">}</span>
 
-let user =
-    { Id = 0
-      Name = &quot;maxime&quot;
-      Email = &quot;mail@domain.com&quot;
-      Followers = 0 }
+<span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">user</span><span> </span><span style="color: #A626A4">=</span>
+<span>    </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">=</span><span> </span><span style="color: #986801">0</span>
+<span>      Name </span><span style="color: #A626A4">=</span><span> </span><span style="color: #50A14F">&quot;maxime&quot;</span>
+<span>      Email </span><span style="color: #A626A4">=</span><span> </span><span style="color: #50A14F">&quot;mail@domain.com&quot;</span>
+<span>      Followers </span><span style="color: #A626A4">=</span><span> </span><span style="color: #986801">0</span><span> </span><span style="color: #A626A4">}</span>
 
-let json = Encode.Auto.toString(4, user)
-// {
-//     &quot;Id&quot;: 0,
-//     &quot;Name&quot;: &quot;maxime&quot;,
-//     &quot;Email&quot;: &quot;mail@domain.com&quot;,
-//     &quot;Followers&quot;: 0
-// }
-</code></pre>
+<span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">json</span><span> </span><span style="color: #A626A4">=</span><span> Encode.Auto.toString</span><span style="color: #A626A4">(</span><span style="color: #986801">4</span><span style="color: #A626A4">,</span><span> user</span><span style="color: #A626A4">)</span>
+<span style="color: #A0A1A7;font-style: italic">// {</span>
+<span style="color: #A0A1A7;font-style: italic">//     &quot;Id&quot;: 0,</span>
+<span style="color: #A0A1A7;font-style: italic">//     &quot;Name&quot;: &quot;maxime&quot;,</span>
+<span style="color: #A0A1A7;font-style: italic">//     &quot;Email&quot;: &quot;mail@domain.com&quot;,</span>
+<span style="color: #A0A1A7;font-style: italic">//     &quot;Followers&quot;: 0</span>
+<span style="color: #A0A1A7;font-style: italic">// }</span></code></pre>
 <h2><a href="#extra-coders" aria-hidden="true" style="visibility:visible"><span class="anchor" id="extra-coders"></span>#</a> Extra coders</h2>
 <p>When generating an auto coder, sometimes you want to use a manual coder for a type nested in your domain hierarchy.</p>
 <p>In those cases you can pass <strong>extra coders</strong> that will replace the default (or missing) coders. Use the <code>Extra</code> module to build the map for extra coders (see example below).</p>
-<pre><code class="language-fsharp">let myExtraCoders =
-    Extra.empty
-    |&gt; Extra.withCustom MyType.Encode MyType.Decode
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">myExtraCoders</span><span> </span><span style="color: #A626A4">=</span>
+<span>    Extra.empty</span>
+<span>    </span><span style="color: #A626A4">|&gt;</span><span> Extra.withCustom MyType.Encode MyType.Decode</span></code></pre>
 <h2><a href="#decoding-int64-decimal-or-bigint" aria-hidden="true" style="visibility:visible"><span class="anchor" id="decoding-int64-decimal-or-bigint"></span>#</a> Decoding int64, decimal or bigint</h2>
 <p>Coders for <code>int64</code>, <code>decimal</code> or <code>bigint</code> won't be automatically generated by default. If their were, the bundle size would increase significantly even if you don't use these types.</p>
 <p>If necessary, you can easily include them in your extra coders with the helpers in the <code>Extra</code> module:</p>
-<pre><code class="language-fsharp">let myExtraCoders =
-    Extra.empty
-    |&gt; Extra.withInt64
-    |&gt; Extra.withDecimal
-    |&gt; Extra.withCustom MyType.Encode MyType.Decode
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">myExtraCoders</span><span> </span><span style="color: #A626A4">=</span>
+<span>    Extra.empty</span>
+<span>    </span><span style="color: #A626A4">|&gt;</span><span> Extra.withInt64</span>
+<span>    </span><span style="color: #A626A4">|&gt;</span><span> Extra.withDecimal</span>
+<span>    </span><span style="color: #A626A4">|&gt;</span><span> Extra.withCustom MyType.Encode MyType.Decode</span></code></pre>
 <h2><a href="#caching" aria-hidden="true" style="visibility:visible"><span class="anchor" id="caching"></span>#</a> Caching</h2>
 <p>To avoid having to regenerate your auto coders every time you need them, you can use the helpers with the <code>Cached</code> suffix instead (please note in these cases you shouldn't change the value of extra parameters like <code>isCamelCase</code> or <code>extra</code>).</p>
 <p>The easiest way to do it is to include some helpers in your app to easily generate (or retrieve from cache) coders whenever you need them. For example:</p>
-<pre><code class="language-fsharp">// Note the helpers must be inlined to resolve generic parameters in Fable
-let inline encoder&lt;'T&gt; = Encode.Auto.generateEncoderCached&lt;'T&gt;(isCamelCase = true, extra = myExtraCoders)
-let inline decoder&lt;'T&gt; = Decode.Auto.generateDecoderCached&lt;'T&gt;(isCamelCase = true, extra = myExtraCoders)
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A0A1A7;font-style: italic">// Note the helpers must be inlined to resolve generic parameters in Fable</span>
+<span style="color: #A626A4">let inline</span><span> </span><span style="color: #E45649">encoder</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">&#039;T</span><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">=</span><span> Encode.Auto.generateEncoderCached</span><span style="color: #A626A4">&lt;</span><span>&#039;T</span><span style="color: #A626A4">&gt;(</span><span>isCamelCase </span><span style="color: #A626A4">=</span><span> </span><span style="color: #986801">true</span><span style="color: #A626A4">,</span><span> extra </span><span style="color: #A626A4">=</span><span> myExtraCoders</span><span style="color: #A626A4">)</span>
+<span style="color: #A626A4">let inline</span><span> </span><span style="color: #E45649">decoder</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">&#039;T</span><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">=</span><span> Decode.Auto.generateDecoderCached</span><span style="color: #A626A4">&lt;</span><span>&#039;T</span><span style="color: #A626A4">&gt;(</span><span>isCamelCase </span><span style="color: #A626A4">=</span><span> </span><span style="color: #986801">true</span><span style="color: #A626A4">,</span><span> extra </span><span style="color: #A626A4">=</span><span> myExtraCoders</span><span style="color: #A626A4">)</span></code></pre>
 <p>Now you can easily invoke the helpers whenever you need a coder. Most of the times you can omit the generic argument as it will be inferred.</p>
-<pre><code class="language-fsharp">let demo(x : RequestType) : ResponseType =
-    let requestJson = encoder x |&gt; Encode.toString 4
-    let responseJson = (* Send JSON to server and receive response *)
-    Decode.unsafeFromString decoder responseJson
-</code></pre>
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">demo</span><span style="color: #A626A4">(</span><span style="color: #383A42">x </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">RequestType</span><span style="color: #A626A4">)</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">ResponseType </span><span style="color: #A626A4">=</span>
+<span>    </span><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">requestJson</span><span> </span><span style="color: #A626A4">=</span><span> encoder x </span><span style="color: #A626A4">|&gt;</span><span> Encode.toString </span><span style="color: #986801">4</span>
+<span>    </span><span style="color: #A626A4">let</span><span> </span><span style="color: #E45649">responseJson</span><span> </span><span style="color: #A626A4">=</span><span> </span><span style="color: #A0A1A7;font-style: italic">(* Send JSON to server and receive response *)</span>
+<span>    Decode.unsafeFromString decoder responseJson</span></code></pre>
 <h1><a href="#net-netcore-support" aria-hidden="true" style="visibility:hidden"><span class="anchor" id="net-netcore-support"></span></a> .Net &amp; NetCore support</h1>
 <p>You can share your decoders and encoders <strong>between your client and server</strong>.</p>
 <p>In order to use Thoth.Json API on .Net or NetCore you need to use the <code>Thoth.Json.Net</code> package.</p>
 <h2><a href="#code-sample" aria-hidden="true" style="visibility:visible"><span class="anchor" id="code-sample"></span>#</a> Code sample</h2>
-<pre><code class="language-fsharp">// By adding this condition, you can share your code between your client and server
-#if FABLE_COMPILER
-open Thoth.Json
-#else
-open Thoth.Json.Net
-#endif
+<pre style="background-color: #FAFAFA;color: ;padding: 1em"><code><span style="color: #A0A1A7;font-style: italic">// By adding this condition, you can share your code between your client and server</span>
+<span>#if FABLE</span><span style="color: #A626A4">_</span><span>COMPILER</span>
+<span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json</span>
+<span>#else</span>
+<span style="color: #A626A4">open</span><span> </span><span style="color: #4078F2">Thoth.Json.Net</span>
+<span>#endif</span>
 
-type User =
-    { Id : int
-      Name : string
-      Email : string
-      Followers : int }
+<span style="color: #A626A4">type</span><span> </span><span style="color: #C18401">User</span><span> </span><span style="color: #A626A4">=</span>
+<span>    </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int</span>
+<span>      Name </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">string</span>
+<span>      Email </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">string</span>
+<span>      Followers </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">int </span><span style="color: #A626A4">}</span>
 
-    static member Decoder : Decode.Decoder&lt;User&gt; =
-        Decode.object
-            (fun get -&gt;
-                { Id = get.Required.Field &quot;id&quot; Decode.int
-                    Name = get.Optional.Field &quot;name&quot; Decode.string
-                            |&gt; Option.defaultValue &quot;&quot;
-                    Email = get.Required.Field &quot;email&quot; Decode.string
-                    Followers = 0 }
-            )
+<span>    </span><span style="color: #A626A4">static member</span><span> </span><span style="color: #E45649">Decoder</span><span style="color: #383A42"> </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">Decode.Decoder</span><span style="color: #A626A4">&lt;</span><span style="color: #C18401">User</span><span style="color: #A626A4">&gt;</span><span> </span><span style="color: #A626A4">=</span>
+<span>        Decode.object</span>
+<span>            </span><span style="color: #A626A4">(fun</span><span style="color: #383A42"> get </span><span style="color: #A626A4">-&gt;</span>
+<span>                </span><span style="color: #A626A4">{</span><span> Id </span><span style="color: #A626A4">=</span><span> get.Required.Field </span><span style="color: #50A14F">&quot;id&quot;</span><span> Decode.int</span>
+<span>                    Name </span><span style="color: #A626A4">=</span><span> get.Optional.Field </span><span style="color: #50A14F">&quot;name&quot;</span><span> Decode.string</span>
+<span>                            </span><span style="color: #A626A4">|&gt;</span><span> Option.defaultValue </span><span style="color: #50A14F">&quot;&quot;</span>
+<span>                    Email </span><span style="color: #A626A4">=</span><span> get.Required.Field </span><span style="color: #50A14F">&quot;email&quot;</span><span> Decode.string</span>
+<span>                    Followers </span><span style="color: #A626A4">=</span><span> </span><span style="color: #986801">0</span><span> </span><span style="color: #A626A4">}</span>
+<span>            </span><span style="color: #A626A4">)</span>
 
-    static member Encoder (user : User) =
-        Encode.object
-            [ &quot;id&quot;, Encode.int user.Id
-              &quot;name&quot;, Encode.string user.Name
-              &quot;email&quot;, Encode.string user.Email
-              &quot;followers&quot;, Encode.int user.Followers
-            ]
-</code></pre>
+<span>    </span><span style="color: #A626A4">static member</span><span> </span><span style="color: #E45649">Encoder</span><span style="color: #383A42"> </span><span style="color: #A626A4">(</span><span style="color: #383A42">user </span><span style="color: #A626A4">:</span><span> </span><span style="color: #C18401">User</span><span style="color: #A626A4">)</span><span> </span><span style="color: #A626A4">=</span>
+<span>        Encode.object</span>
+<span>            </span><span style="color: #A626A4">[</span><span> </span><span style="color: #50A14F">&quot;id&quot;</span><span style="color: #A626A4">,</span><span> Encode.int user.Id</span>
+<span>              </span><span style="color: #50A14F">&quot;name&quot;</span><span style="color: #A626A4">,</span><span> Encode.string user.Name</span>
+<span>              </span><span style="color: #50A14F">&quot;email&quot;</span><span style="color: #A626A4">,</span><span> Encode.string user.Email</span>
+<span>              </span><span style="color: #50A14F">&quot;followers&quot;</span><span style="color: #A626A4">,</span><span> Encode.int user.Followers</span>
+<span>            </span><span style="color: #A626A4">]</span></code></pre>
 <h2><a href="#giraffe" aria-hidden="true" style="visibility:visible"><span class="anchor" id="giraffe"></span>#</a> Giraffe</h2>
 <p>If you're using the <a href="https://github.com/giraffe-fsharp/Giraffe">Giraffe</a> or <a href="https://saturnframework.org/">Saturn</a> web servers, you can use the <code>Thoth.Json.Giraffe</code> package to enable automatic JSON serialization with Thoth in your responses. Check <a href="https://github.com/giraffe-fsharp/Giraffe/blob/master/DOCUMENTATION.md#using-a-different-json-serializer">how to add a custom serializer</a> to Giraffe.</p>
 <blockquote>

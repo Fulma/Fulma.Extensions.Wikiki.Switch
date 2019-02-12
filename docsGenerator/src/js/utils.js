@@ -3,11 +3,37 @@
 
 const lightner = require('code-lightner');
 
+const mdMessage = (level) => {
+
+    return {
+        validate: function (params) {
+            return params.trim() === level;
+        },
+
+        render: function (tokens, idx) {
+            if (tokens[idx].nesting === 1) {
+                // opening tag
+                return `<article class="message is-${level}">
+                <div class="message-body">`;
+
+
+            } else {
+                // closing tag
+                return '</div>\n</article>\n';
+            }
+        }
+    }
+}
+
 const md = require('markdown-it')({
     html: true
 })
     .use(require('${entryDir}/src/js/markdown-it-anchored'))
-    .use(require('${entryDir}/src/js/markdown-it-toc'));
+    .use(require('${entryDir}/src/js/markdown-it-toc'))
+    .use(require('markdown-it-container'), 'warning', mdMessage("warning"))
+    .use(require('markdown-it-container'), 'info', mdMessage("info"))
+    .use(require('markdown-it-container'), 'success', mdMessage("success"))
+    .use(require('markdown-it-container'), 'danger', mdMessage("danger"));
 
 const startTag = `<pre><code class="language-fsharp">`;
 const endTag = `</code></pre>`;
@@ -17,29 +43,29 @@ const codeToFSharp = code => {
         backgroundColor: "#FAFAFA",
         textColor: "",
         grammarFiles: [
-            "./paket-files/docs/ionide/ionide-fsgrammar/grammar/fsharp.json"
+            "./../paket-files/docs/ionide/ionide-fsgrammar/grammar/fsharp.json"
         ],
         scopeName: "source.fsharp",
-        themeFile: "./paket-files/docs/akamud/vscode-theme-onelight/themes/OneLight.json"
+        themeFile: "./../paket-files/docs/akamud/vscode-theme-onelight/themes/OneLight.json"
     }, code);
 };
 
 export function unEscapeHtml(unsafe) {
     return unsafe
-         .replace(/&amp;/g, "&")
-         .replace(/&lt;/g, "<")
-         .replace(/&gt;/g, ">")
-         .replace(/&quot;/g, "\"")
-         .replace(/&#039;/g, "'")
- }
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, "\"")
+        .replace(/&#039;/g, "'")
+}
 
 export function makeHtml(content) {
     let html = md.render(content);
 
-    return new Promise((resolve, error) => {
-            resolve(html);
-        });
-    // return codeFormat(html);
+    // return new Promise((resolve, error) => {
+    //         resolve(html);
+    //     });
+    return codeFormat(html);
 }
 
 // Format the code after the markdown pass is done

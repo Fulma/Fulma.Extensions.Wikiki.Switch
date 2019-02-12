@@ -17,6 +17,7 @@
     "front-matter": "^3.0.1",
     "live-server": "^1.2.1",
     "markdown-it": "^8.4.2",
+    "markdown-it-container": "^2.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "string": "^3.3.3"
