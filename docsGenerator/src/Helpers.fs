@@ -4,9 +4,6 @@ module Global
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
-let whitespace =
-    span [ DangerouslySetInnerHTML { __html = " " } ]
-        [ ]
 
 module Helpers =
 

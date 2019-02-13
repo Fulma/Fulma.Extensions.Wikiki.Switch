@@ -11,4 +11,4 @@ type [<AllowNullLiteral>] FM =
     [<Emit "$0($1...)">] abstract Invoke<'T> : file: string -> FrontMatterResult<'T>
     abstract test: file: string -> bool
 
-let [<Import("*","front-matter")>] fm: FM = jsNative
+let [<Import("default","front-matter")>] fm: FM = jsNative

@@ -42,3 +42,4 @@ Fulma\.sln\.DotSettings\.user
 yarn-error\.log
 
 .fable
+dist/

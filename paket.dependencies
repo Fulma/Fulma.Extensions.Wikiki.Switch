@@ -19,6 +19,7 @@ group Docs
     nuget Fulma
     nuget Fable.FontAwesome
     nuget Fable.FontAwesome.Free
+    nuget Thoth.Json
 
     github akamud/vscode-theme-onelight themes/OneLight.json
     github ionide/ionide-fsgrammar grammar/fsharp.json
